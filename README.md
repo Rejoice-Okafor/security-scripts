@@ -20,7 +20,7 @@ This repository contains Ansible playbooks for automating security tasks in Micr
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/azure-security-playbooks.git
+   https://github.com/Rejoice-Okafor/security-scripts.git
 Navigate to the playbook you want to use.
 
 Modify the playbook as needed, including specifying your Azure AD user details.
