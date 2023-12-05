@@ -28,5 +28,5 @@ Modify the playbook as needed, including specifying your Azure AD user details.
 Run the playbook using the following command:
 
 ```bash
-ansible-playbook Enforce_MFA_Azure.yml
+ansible-playbook playbook.yaml
 ```
