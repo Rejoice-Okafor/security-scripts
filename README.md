@@ -9,10 +9,10 @@ Contents
 1. Enforce_mfa_policy.json  
    ARM template that deploys a Conditional Access policy requiring Multi-Factor Authentication (MFA) for every user. New users are covered automatically.
 
-   Ccreate_mfa_policy.py  
+2. Create_mfa_policy.py  
    Python script that uses Microsoft Graph to create (or update) the same Conditional Access policy.
    
-3. Enforce_password_policy.json**  
+3. Enforce_password_policy.json
    ARM template that enforces password policies such as minimum length, expiration, history, and character requirements.
 
 4. Create_password_policy.py**  
