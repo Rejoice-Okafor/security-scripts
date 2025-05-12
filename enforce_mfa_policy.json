@@ -1,0 +1,76 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2020-07-01/resources.json",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Authorization/policyDefinitions",
+      "name": "RequireMfaAllUsers",
+      "apiVersion": "2020-09-01",
+      "properties": {
+        "displayName": "Require MFA for all users",
+        "policyType": "Custom",
+        "mode": "Microsoft.Authorization/identity",
+        "description": "Conditional Access policy that enforces MFA for every user",
+        "metadata": {
+          "category": "Identity"
+        },
+        "policyRule": {
+          "if": {
+            "field": "type",
+            "equals": "Microsoft.Identity/conditionalAccessPolicies"
+          },
+          "then": {
+            "effect": "deployIfNotExists",
+            "details": {
+              "type": "Microsoft.Entra/conditionalAccessPolicies",
+              "name": "Require MFA for all users",
+              "roleDefinitionIds": [],
+              "existenceCondition": {
+                "field": "Microsoft.Entra/conditionalAccessPolicies/state",
+                "equals": "enabled"
+              },
+              "deployment": {
+                "properties": {
+                  "mode": "incremental",
+                  "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": [
+                      {
+                        "type": "Microsoft.Entra/conditionalAccessPolicies",
+                        "apiVersion": "2023-01-01",
+                        "name": "Require MFA for all users",
+                        "properties": {
+                          "displayName": "Require MFA for all users",
+                          "state": "enabled",
+                          "conditions": {
+                            "users": {
+                              "includeUsers": [
+                                "All"
+                              ]
+                            },
+                            "applications": {
+                              "includeApplications": [
+                                "All"
+                              ]
+                            }
+                          },
+                          "grantControls": {
+                            "operator": "OR",
+                            "builtInControls": [
+                              "mfa"
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
