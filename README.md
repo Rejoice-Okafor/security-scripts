@@ -29,6 +29,7 @@ Log in to Azure:
 
 ```bash
 az login --tenant <tenant-id>
+```
 
 Deploy the policy:
 
